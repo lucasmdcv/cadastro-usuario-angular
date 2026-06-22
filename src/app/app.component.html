@@ -1,0 +1,85 @@
+<div class="container">
+  <header>
+    <h1>Gerenciador de Usuários</h1>
+    <p>Painel de controle de cadastros</p>
+  </header>
+
+  <div class="dashboard-layout">
+    <aside class="form-section">
+      <div class="card">
+        <h2>Novo Usuário</h2>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input id="nome" type="text" formControlName="nome" placeholder="Ex: João Silva">
+          </div>
+
+          <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input id="cpf" type="text" formControlName="cpf" placeholder="000.000.000-00">
+          </div>
+
+          <div class="form-group">
+            <label for="cep">CEP</label>
+            <input id="cep" type="text" formControlName="cep" placeholder="00000-000">
+          </div>
+
+          <div class="form-group">
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input id="telefone" type="text" formControlName="telefone" placeholder="(00) 90000-0000">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="text" formControlName="email" placeholder="example@gmail.com">
+          </div>
+
+          <button type="submit" [disabled]="userForm.invalid" class="btn-primary">Cadastrar</button>
+        </form>
+
+        <div class="divider">ou</div>
+
+        <button (click)="generateRandom()" class="btn-secondary">
+          ⚡ Gerar Usuário Aleatório
+        </button>
+      </div>
+    </aside>
+
+    <main class="table-section">
+      <div class="card">
+        <h2>Usuários Cadastrados ({{ userService.users().length }})</h2>
+        
+        <div *ngIf="userService.users().length === 0" class="empty-state">
+          <p>Nenhum usuário cadastrado até o momento.</p>
+        </div>
+
+        <table *ngIf="userService.users().length > 0" class="custom-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>CEP</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userService.users()">
+              <td><strong>{{ user.nome }}</strong></td>
+              <td>{{ user.cpf }}</td>
+              <td>{{ user.cep }}</td>
+              <td>{{ user.telefone }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <button (click)="remove(user.id)" class="btn-danger" title="Remover Usuário">
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
