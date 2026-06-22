@@ -4,6 +4,11 @@ Painel administrativo reativo para gerenciamento de cadastros (CRUD) focado em a
 
 ---
 
+  ## 🌐 Site Rodando
+  visite https://cadastrousuarioangularr.netlify.app/
+
+---
+
 ## 🧠 Pilares de Execução (Alta Performance)
 
 1. **Mentalidade Bilionária:** Arquitetura escalável baseada em sistemas estruturados e resultados assimétricos.
